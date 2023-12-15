@@ -1,34 +1,33 @@
 // WeatherComponent.js
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import fetchWeatherData from './services/roadTripApi'; 
 
 const WeatherComponent = () => {
   const [location, setLocation] = useState('Denver, CO');
   const [weatherData, setWeatherData] = useState(null);
 
-  const fetchWeatherData = useCallback(async () => {
+  const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/data', {
-        params: {
-          location: location,
-        },
-      });
-
-      console.log('API response:', response.data);
-
-      setWeatherData(response.data);
+      const data = await fetchWeatherData(location);
+      setWeatherData(data);
     } catch (error) {
-      console.error('Error fetching weather data:', error);
+      // Handle errors if needed
     }
   }, [location]);
 
   useEffect(() => {
-    fetchWeatherData();
-  }, [location, fetchWeatherData]);
+    fetchData();
+  }, [location, fetchData]);
 
   return (
     <div className="container mt-4 mb-4">
       <h2>Weather Forecast</h2>
+      <img 
+        src={weatherData && weatherData.data.attributes.picture_data.image.image_url}
+        alt="Weather Icon"
+        style={{ width: '300px', height: '300px', float: 'left', marginRight: '20px', marginTop: '20px' }}
+        className="img-thumbnail"
+      />
       <label className="form-label">
         Destination
         <input
