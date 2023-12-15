@@ -28,7 +28,7 @@ const BookComponent = () => {
 
   return (
     <div className="container mt-4 mb-4">
-      <h2>Book Display</h2>
+      <h2>Books about {location}</h2>
       {weatherData && (
         <div className="row">
           {weatherData.data.attributes.book_data.books.map((book, index) => {
@@ -37,12 +37,13 @@ const BookComponent = () => {
               <div key={index} className="col-md-4 mb-4">
                 <div className="card">
                   <div className="card-body">
-                    <h5 className="card-title">{`${book.title}`}</h5>
-                    <p>Info</p>
-                    <p>Autho</p>
-                    <p>Picture</p>
-                    <p>Link</p>
-                    <p>Summary</p>
+                    <h5 className="card-title">Title: {`${book.title}`}</h5>
+                    <p>Published: {book.publish_year}</p>
+                    <p>Author: {book.author}</p>
+                    <p>Publisher: {book.publisher}</p>
+                    <p>
+                      Link: <a href={book.preview} target="_blank" rel="noopener noreferrer">Preview</a>
+                    </p>
                   </div>
                 </div>
               </div>

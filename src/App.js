@@ -2,6 +2,7 @@ import React from 'react';
 import WeatherComponent from './WeatherComponent';
 import BookComponent from './BookComponent';
 import { LocationProvider } from './LocationContext';
+import LocationInput from './LocationInput';
 
 import './App.css';
 
@@ -13,6 +14,7 @@ function App() {
           <h1>Road Trip Planner</h1>
         </header>
         <div className="App-body">
+          <LocationInput />
           <WeatherComponent />
           <BookComponent />
         </div>

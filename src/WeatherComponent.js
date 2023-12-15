@@ -1,10 +1,11 @@
 // WeatherComponent.js
 import React, { useState, useEffect, useCallback } from 'react';
 import fetchWeatherData from './services/roadTripApi'; 
+import { useLocation } from './LocationContext';
 
 const WeatherComponent = () => {
-  const [location, setLocation] = useState('Denver, CO');
   const [weatherData, setWeatherData] = useState(null);
+  const { location } = useLocation();
 
   const fetchData = useCallback(async () => {
     try {
@@ -28,15 +29,7 @@ const WeatherComponent = () => {
         style={{ width: '300px', height: '300px', float: 'left', marginRight: '20px', marginTop: '20px' }}
         className="img-thumbnail"
       />
-      <label className="form-label">
-        Destination
-        <input
-          className="form-control"
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-      </label>
+
       {weatherData && (
         <div className="row">
           {weatherData.data.attributes.weather_data.daily_weather.map((day, index) => {
@@ -53,6 +46,7 @@ const WeatherComponent = () => {
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">{`${formattedDate}`}</h5>
+                    <h6 className="card-title">{weatherData.data.attributes.picture_data.location}</h6>
                     <p>High: {day.max_temp} F</p>
                     <p>Low: {day.min_temp} F</p>
                     <p>Conditions: {day.condition}</p>
