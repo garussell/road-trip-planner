@@ -1,12 +1,17 @@
-import { createContext, useContext, useState } from "react";
+// LocationContext.js
+import React, { createContext, useContext, useState } from "react";
 
 const LocationContext = createContext();
 
 export const LocationProvider = ({ children }) => {
-  const [location, setLocation] = useState("denver,co");
+  const [location, setLocation] = useState("Denver, CO");
+
+  const setNewLocation = (newLocation) => {
+    setLocation(newLocation);
+  };
 
   return (
-    <LocationContext.Provider value={{ location, setLocation }}>
+    <LocationContext.Provider value={{ location, setLocation: setNewLocation }}>
       {children}
     </LocationContext.Provider>
   );
