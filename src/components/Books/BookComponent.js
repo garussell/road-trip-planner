@@ -1,7 +1,7 @@
 // BookComponent.js
 import React, { useEffect, useState } from "react";
 import { useLocation } from "../Location/LocationContext";
-import fetchWeatherData from '../../services/roadTripApi';
+import fetchWeatherData from '../../services/weatherBooksPictureService';
 
 const BookComponent = () => {
   const { location } = useLocation();
