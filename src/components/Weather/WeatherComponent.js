@@ -1,7 +1,7 @@
 // WeatherComponent.js
 import React, { useState, useEffect, useCallback } from 'react';
-import fetchWeatherData from './services/roadTripApi'; 
-import { useLocation } from './LocationContext';
+import fetchWeatherData from '../../services/roadTripApi'; 
+import { useLocation } from '../Location/LocationContext';
 
 const WeatherComponent = () => {
   const [weatherData, setWeatherData] = useState(null);

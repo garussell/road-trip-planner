@@ -1,7 +1,7 @@
 // BookComponent.js
 import React, { useEffect, useState } from "react";
-import { useLocation } from "./LocationContext";
-import fetchWeatherData from './services/roadTripApi';
+import { useLocation } from "../Location/LocationContext";
+import fetchWeatherData from '../../services/roadTripApi';
 
 const BookComponent = () => {
   const { location } = useLocation();
@@ -28,7 +28,7 @@ const BookComponent = () => {
 
   return (
     <div className="container mt-4 mb-4">
-      <h2>Books about {location}</h2>
+      <h2>Books and Maps</h2>
       {weatherData && (
         <div className="row">
           {weatherData.data.attributes.book_data.books.map((book, index) => {
