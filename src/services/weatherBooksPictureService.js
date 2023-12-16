@@ -1,4 +1,4 @@
-// roadTripApi.js
+// weatherBooksPictureService.js
 import axios from 'axios';
 
 const fetchWeatherData = async (location) => {
