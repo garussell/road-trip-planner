@@ -9,7 +9,7 @@ const fetchWeatherData = async (location) => {
       },
     });
 
-    console.log('API response:', response.data);
+    console.log('Weather/Books/Pic API response:', response.data);
 
     return response.data;
   } catch (error) {

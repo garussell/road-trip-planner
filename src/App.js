@@ -3,7 +3,6 @@ import WeatherComponent from './components/Weather/WeatherComponent';
 import BookComponent from './components/Books/BookComponent';
 import RoadTripComponent from './components/RoadTrip/RoadTripComponent';
 import { LocationProvider } from './components/Location/LocationContext';
-import LocationInput from './components/Location/LocationInput';
 import Navbar from './components/Navbar/Navbar';
 
 import './App.css';
@@ -17,7 +16,6 @@ function App() {
           <Navbar />
           <header className="App-header">
             <h1>Road Trip Planner</h1>
-            <LocationInput />
             <InnerHeader />
           </header>
             <div className="App-body">

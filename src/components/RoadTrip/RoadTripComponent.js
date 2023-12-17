@@ -13,10 +13,10 @@ const RoadTripComponent = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    try {
+    try {    
       await fetchRoadTripData(origin, location);
     } catch (error) {
-      console.error('Error handling form submission:', error);
+      console.error('Error handling form submission:roadTripComponent', error);
     }
   };
 
@@ -47,6 +47,7 @@ const RoadTripComponent = () => {
             <label>
               Origin
               <input
+                className="form-control"
                 type="text"
                 value={origin}
                 onChange={(e) => setOrigin(e.target.value)}
@@ -56,13 +57,17 @@ const RoadTripComponent = () => {
             <label>
               Destination
               <input
+                className="form-control"
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
             </label>
             <br />
-            <button type="submit">Plan Road Trip</button>
+            <button 
+              className="btn btn-primary mt-2"
+              type="submit">Plan Road Trip
+            </button>
           </form><br />
 
           {roadTripData && (
