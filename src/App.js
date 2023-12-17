@@ -1,33 +1,41 @@
 import React from 'react';
 import WeatherComponent from './components/Weather/WeatherComponent';
 import BookComponent from './components/Books/BookComponent';
+import RoadTripComponent from './components/RoadTrip/RoadTripComponent';
 import { LocationProvider } from './components/Location/LocationContext';
 import LocationInput from './components/Location/LocationInput';
 import Navbar from './components/Navbar/Navbar';
 
 import './App.css';
-import { AuthProvider } from './components/Auth/AuthContext';
+import { AuthProvider, useAuth } from './components/Auth/AuthContext';
 
 function App() {
   return (
     <AuthProvider>
       <LocationProvider>
         <div className="App">
-          <Navbar />  
+          <Navbar />
           <header className="App-header">
             <h1>Road Trip Planner</h1>
-            <p>Enter your destination below to get started!</p>
             <LocationInput />
+            <InnerHeader />
           </header>
-          <div className="App-body">
-            <WeatherComponent />
-            <hr className="section-divider" />
-            <BookComponent />
-          </div>
+            <div className="App-body">
+              <RoadTripComponent />
+              <WeatherComponent />
+              <hr className="section-divider" />
+              <BookComponent />
+            </div>
         </div>
       </LocationProvider>
     </AuthProvider>
   );
+}
+
+function InnerHeader() {
+  const apiKey = useAuth().apiKey;
+  console.log('apiKey', apiKey);
+  return apiKey && <RoadTripComponent />;
 }
 
 export default App;

@@ -1,23 +1,36 @@
-// roadTripService.js
+// useRoadTripData.js
+import { useState } from 'react';
+import { useAuth } from '../components/Auth/AuthContext';
 import axios from 'axios';
 
-const fetchRoadTripData = async (origin, destination, api_key) => {
-  try {
-    const response = await axios.post('http://localhost:3000/api/v0/road_trip', {
-      body: {
-        origin: origin,
-        destination: destination,
-        api_key: api_key,
-      },
-    });
+const useRoadTripData = () => {
+  const { apiKey } = useAuth();
+  const [roadTripData, setRoadTripData] = useState(null);
 
-    console.log('API response:', response.data);
+  const fetchRoadTripData = async (origin, destination) => {
 
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching road trip data:', error);
-    throw error;
-  }
+    console.log('fetchRoadTripData', origin, destination, apiKey);
+    
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/api/v0/road_trip',
+          {
+            origin: origin,
+            destination: destination,
+            api_key: apiKey,
+          },
+        );
+        
+      console.log('Road trip API response:', response.data);
+
+      setRoadTripData(response.data);
+    } catch (error) {
+      console.error('Error fetching road trip data:', error);
+      throw error;
+    }
+  };
+
+  return { roadTripData, fetchRoadTripData };
 };
 
-export default fetchRoadTripData;
+export default useRoadTripData;
