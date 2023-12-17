@@ -19,6 +19,8 @@ const WeatherComponent = () => {
   useEffect(() => {
     fetchData();
   }, [location, fetchData]);
+  
+  console.log('weatherData', weatherData);
 
   return (
     <div className="container mt-4 mb-4">

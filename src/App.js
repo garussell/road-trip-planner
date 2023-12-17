@@ -21,7 +21,6 @@ function App() {
             <InnerHeader />
           </header>
             <div className="App-body">
-              <RoadTripComponent />
               <WeatherComponent />
               <hr className="section-divider" />
               <BookComponent />
@@ -34,7 +33,6 @@ function App() {
 
 function InnerHeader() {
   const apiKey = useAuth().apiKey;
-  console.log('apiKey', apiKey);
   return apiKey && <RoadTripComponent />;
 }
 

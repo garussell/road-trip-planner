@@ -2,25 +2,45 @@
 import React, { useState } from 'react';
 import useRoadTripData from '../../services/roadTripService';
 import { useAuth } from '../Auth/AuthContext';
+import { useLocation } from '../Location/LocationContext';
 
 const RoadTripComponent = () => {
   const { roadTripData, fetchRoadTripData } = useRoadTripData();
   const [origin, setOrigin] = useState('');
-  const [destination, setDestination] = useState('');
+  const { location, setLocation } = useLocation();
   const { apiKey } = useAuth();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await fetchRoadTripData(origin, destination);
+      await fetchRoadTripData(origin, location);
     } catch (error) {
       console.error('Error handling form submission:', error);
     }
   };
 
+  let formattedArrivalTime = 'N/A';
+
+  if (roadTripData && roadTripData.data && roadTripData.data.attributes && roadTripData.data.attributes.weather_at_eta) {
+    const arrivalTime = new Date(roadTripData.data.attributes.weather_at_eta.datetime);
+    
+    formattedArrivalTime = arrivalTime.toLocaleString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZoneName: 'short',
+    });
+  }
+  
+  console.log('roadTripData', roadTripData);
+
   return (
-    <div>
+    <div className="container">
       {apiKey && (
         <div>
           <form onSubmit={handleFormSubmit}>
@@ -37,21 +57,22 @@ const RoadTripComponent = () => {
               Destination
               <input
                 type="text"
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
               />
             </label>
             <br />
             <button type="submit">Plan Road Trip</button>
-          </form>
+          </form><br />
 
           {roadTripData && (
-            <div className="col-md-4 mb-4">
+            <div className="col-md-6 mx-auto mb-4">
               <div className="card">
                 <div className="card-body">
-                  <h5>Origin: {roadTripData.data.attributes.start_city}</h5>
-                  <p>Destination: {roadTripData.data.attributes.end_city}</p>
+                  <h4 className="card-title">Origin: {roadTripData.data.attributes.start_city}</h4>
+                  <h4 className="card-title">Destination: {roadTripData.data.attributes.end_city}</h4>
                   <p>Travel Time: {roadTripData.data.attributes.travel_time}</p>
+                  <p>Arrival Time: {formattedArrivalTime}</p>
                   <p>Weather at ETA: {roadTripData.data.attributes.weather_at_eta.temperature}F</p>
                   <p>Condition: {roadTripData.data.attributes.weather_at_eta.condition}</p>
                 </div>
