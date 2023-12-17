@@ -4,9 +4,9 @@ import { useAuth } from './AuthContext';
 
 const AuthForm = () => {
   const { apiKey, login, logout, setApiKey } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
+  const [email, setEmail] = useState('test@example.com');
+  const [password, setPassword] = useState('password');
+  const [password_confirmation, setPasswordConfirmation] = useState('password');
 
   const handleLogin = async () => {
     try {

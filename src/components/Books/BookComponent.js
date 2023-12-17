@@ -22,8 +22,6 @@ const BookComponent = () => {
   }, [location]);
 
   useEffect(() => {
-    console.log("Location in BookComponent", location);
-    console.log("Weather Data in BookComponent", weatherData);
   }, [location, weatherData]);
 
   return (
@@ -38,7 +36,7 @@ const BookComponent = () => {
                 <div className="card">
                   <div className="card-body">
                     <h5 className="card-title">Title: {`${book.title}`}</h5>
-                    <p>Published: {book.publish_year}</p>
+                    <p>Published: {Array.isArray(book.publish_year) ? book.publish_year.slice(-1)[0] : book.publish_year}</p>
                     <p>Author: {book.author}</p>
                     <p>Publisher: {book.publisher}</p>
                     <p>
