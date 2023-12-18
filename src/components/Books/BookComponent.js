@@ -40,6 +40,14 @@ const BookComponent = () => {
                     <p>Author: {book.author}</p>
                     <p>Publisher: {book.publisher}</p>
                     <p>
+                      {book.preview ? (
+                        <>
+                          <img src={book.preview} alt= "No Preview" />
+                          <br />
+                        </>
+                      ) : (
+                        <img src="/moon.png" alt="" />
+                      )}
                       Link: <a href={book.preview} target="_blank" rel="noopener noreferrer">Preview</a>
                     </p>
                   </div>
