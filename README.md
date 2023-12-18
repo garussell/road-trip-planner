@@ -1,6 +1,5 @@
 # Road Trip Planner - Frontend
 
-[![GitHub license](https://img.shields.io/github/license/garussell/road-trip-planner)](https://github.com/garussell/road-trip-planner/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/garussell/road-trip-planner)](https://github.com/garussell/road-trip-planner/issues)
 [![GitHub stars](https://img.shields.io/github/stars/garussell/road-trip-planner)](https://github.com/garussell/road-trip-planner/stargazers)
 
