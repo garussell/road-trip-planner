@@ -22,6 +22,7 @@ function App() {
               <WeatherComponent />
               <hr className="section-divider" />
               <BookComponent />
+              <hr className="section-divider" />
             </div>
         </div>
       </LocationProvider>

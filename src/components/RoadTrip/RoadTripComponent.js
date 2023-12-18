@@ -15,6 +15,9 @@ const RoadTripComponent = () => {
 
     try {    
       await fetchRoadTripData(origin, location);
+      
+      setLocation(location);
+
     } catch (error) {
       console.error('Error handling form submission:roadTripComponent', error);
     }

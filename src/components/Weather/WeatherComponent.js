@@ -25,12 +25,21 @@ const WeatherComponent = () => {
   return (
     <div className="container mt-4 mb-4">
       <h2>Weather Forecast</h2>
-      <img 
-        src={weatherData && weatherData.data.attributes.picture_data.image.image_url}
-        alt="Weather Icon"
-        style={{ width: '300px', height: '300px', float: 'left', marginRight: '20px', marginTop: '20px' }}
-        className="img-thumbnail"
-      />
+      <div>
+        <img 
+          src={weatherData && weatherData.data.attributes.picture_data.image.image_url}
+          alt="Weather Icon"
+          style={{ width: '300px', height: '300px', marginRight: '20px' }}
+          className="img-thumbnail"
+        />
+        <div>
+          {weatherData && weatherData.data && weatherData.data.attributes && weatherData.data.attributes.picture_data && (
+          <h6>
+            Photo Credit: {weatherData.data.attributes.picture_data.image.credit.author}, Unsplash.com
+          </h6>
+        )}
+        </div>
+      </div>
 
       {weatherData && (
         <div className="row">
@@ -51,7 +60,7 @@ const WeatherComponent = () => {
                     <h6 className="card-title">{weatherData.data.attributes.picture_data.location}</h6>
                     <p>High: {day.max_temp} F</p>
                     <p>Low: {day.min_temp} F</p>
-                    <p>Conditions: {day.condition}</p>
+                    <p>Conditions: {weatherData.data.attributes.book_data.forecast.summary}</p>
                     <p>Sunrise: {day.sunrise}</p>
                     <p>Sunset: {day.sunset}</p>
                     <img src={day.icon} alt="Weather Icon" />
