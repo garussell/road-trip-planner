@@ -32,3 +32,9 @@ These instructions will help you set up and run the frontend locally.
 git clone https://github.com/garussell/road-trip-planner.git
 cd road-trip-planner
 ```
+2. Install dependencies:
+`npm install`
+
+3. Start localhost:
+If you installed the BE repo and started `localhost:3000`
+On the front-end use `nmp start` then select `Y` to run on `localhost:3001`
